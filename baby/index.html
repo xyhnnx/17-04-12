@@ -18,7 +18,6 @@
             width:300px;
             height:300px;
             margin:180px auto;
-
             transform-style:preserve-3d;
             animation:rotate 20s infinite;
             animation-timing-function: linear;
@@ -34,18 +33,19 @@
         .box div{
             position: absolute;
             transition: all 0.8s 0.2s;
+            overflow: hidden;
+            width: 300px;
+            height: 300px;
             /*加一个过渡效果*/
         }
-
         .out-pic{
             width:300px;
-            height:300px;
+            
             opacity:0.9;
         }
         .in-pic{
             width:150px;
             height:150px;
-
         }
         span{
             display: block;
@@ -55,7 +55,6 @@
             top:75px;
             left:75px;
         }
-
         /*先生成一个外围大的正方体*/
         .out-front{
             transform:translateZ(150px);
@@ -113,7 +112,6 @@
         .box:hover .out-down{
             transform: rotateX(-90deg) translateZ(270px);
         }
-
     </style>
 </head>
 <body>
@@ -140,7 +138,7 @@
         <img src="img/07.jpg" class="in-pic">
     </span>
     <span class="in-back">
-        <img src="imgs/07.jpg" class="in-pic">
+        <img src="img/07.jpg" class="in-pic">
     </span>
     <span class="in-up">
         <img src="img/07.jpg" class="in-pic">
