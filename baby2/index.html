@@ -95,10 +95,12 @@
 				},30);
 			});
 			$(document).on('touchstart',function(e){
+				e.preventDefault();
 				clearInterval(p);
 				var x1 = e.originalEvent.targetTouches[0].pageX; 
 				var y1 = e.originalEvent.targetTouches[0].pageY; 
 				$(this).on('touchmove',function(e){
+					e.preventDefault();
 					xs = e.originalEvent.targetTouches[0].pageX - x1;
 					ys = e.originalEvent.targetTouches[0].pageY - y1;
 					x1 = e.originalEvent.targetTouches[0].pageX;
@@ -108,6 +110,7 @@
 					$('#wrap').css('transform',"perspective(800px) rotateX("+yDeg+"deg) rotateY("+xDeg+"deg)");
 				});
 			}).on('touchend',function(){
+				e.preventDefault();
 				$(this).off('touchmove');
 				p = setInterval(function(){
 					if(Math.abs(xs)<0.5&&Math.abs(ys)<0.5){clearInterval(p)};
