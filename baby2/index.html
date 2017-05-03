@@ -109,7 +109,7 @@
 					yDeg -= ys*0.1;
 					$('#wrap').css('transform',"perspective(800px) rotateX("+yDeg+"deg) rotateY("+xDeg+"deg)");
 				});
-			}).on('touchend',function(){
+			}).on('touchend',function(e){
 				e.preventDefault();
 				$(this).off('touchmove');
 				p = setInterval(function(){
