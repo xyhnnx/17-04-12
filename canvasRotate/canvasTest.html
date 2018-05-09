@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>canvasTest</title>
+</head>
+<style type="text/css">
+    .imgbox img {
+        width: 100%
+    }
+    .canvasbox canvas {
+        width: 100%
+    }
+</style>
+
+<body>
+<div class="imgbox"><img id="img" src="./img/aaa.png"></div>
+<div>
+    <input type="number" id="number" name="" placeholder="输入旋转角度">
+    <button onclick="drawImgToCanvas()">draw</button>
+</div>
+<div class="canvasbox">
+    <canvas id="canvas"></canvas>
+</div>
+<script type="text/javascript">
+  let drawImgToCanvas = () => {
+    let rotate = document.getElementById('number').value * 1
+    let canvas = document.getElementById('canvas')
+    let context = canvas.getContext('2d')
+    let img = new Image()
+    img.src = './img/aaa.png'
+    img.onload = () => {
+      // corssOrigin must be set before the url
+      img.setAttribute('crossOrigin', 'Anonymous')
+      if (rotate < 0) {
+        rotate = 360 + rotate
+      }
+      rotate = rotate % 360
+
+      if (rotate > 45 && rotate < 135) { // 90
+        canvas.width = img.height
+        canvas.height = img.width
+      } else if (rotate > 225 && rotate < 315) { // 270
+        canvas.width = img.height
+        canvas.height = img.width
+      } else {
+        canvas.width = img.width
+        canvas.height = img.height
+      }
+      context.clearRect(0, 0, canvas.width, canvas.height)
+
+
+      context.translate(canvas.width / 2, canvas.height / 2)
+      context.rotate(rotate * Math.PI / 180)
+      context.translate(-canvas.width / 2, -canvas.height / 2)
+      context.drawImage(img, canvas.width / 2 - img.width / 2, canvas.height / 2 - img.height / 2)
+      context.translate(canvas.width / 2, canvas.height / 2)
+      context.rotate(-rotate * Math.PI / 180)
+      context.translate(-canvas.width / 2, -canvas.height / 2)
+      context.restore()
+    }
+  }
+</script>
+</body>
+</html>
